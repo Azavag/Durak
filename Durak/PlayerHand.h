@@ -9,26 +9,26 @@ class PlayerHand
 	vector<Card> Hand;
 
 public:
-	//Конструктор
+
 	PlayerHand()
 	{
 		Hand.reserve(6);
 	}
 	vector<Card> &getHand();
-	//Взятие карты из колоды(Первая раздача + Добор до 6 + карта от противника)
+	//Р’Р·СЏС‚РёРµ РєР°СЂС‚С‹ РёР· РєРѕР»РѕРґС‹(РџРµСЂРІР°СЏ СЂР°Р·РґР°С‡Р° + Р”РѕР±РѕСЂ РґРѕ 6 + РєР°СЂС‚Р° РѕС‚ РїСЂРѕС‚РёРІРЅРёРєР°)
 	void TakingCard(std::vector<Card> &deck, int number);
 
-	//Ход картой
+	//РҐРѕРґ РєР°СЂС‚РѕР№
 	void TurningCard(PlayerHand &OtherHand, int number);
-	//Показать руку карт
+	//РџРѕРєР°Р·Р°С‚СЊ СЂСѓРєСѓ РєР°СЂС‚
 	void ShowHand();
-	//Проверка на возможность отбития карты
+	//РџСЂРѕРІРµСЂРєР° РЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РѕС‚Р±РёС‚РёСЏ РєР°СЂС‚С‹
 	bool Analysis(const PlayerHand table, Card card);
-	//Отбитие карты
+	//РћС‚Р±РёС‚РёРµ РєР°СЂС‚С‹
 	void KickCard(int number, PlayerHand &table);
-	//Подкидывание карты(для игрока)
+	//РџРѕРґРєРёРґС‹РІР°РЅРёРµ РєР°СЂС‚С‹(РґР»СЏ РёРіСЂРѕРєР°)
 	void PlayerThrowUP(PlayerHand &table);
-	//Подкидывание карты(для "ИИ")
+	//РџРѕРґРєРёРґС‹РІР°РЅРёРµ РєР°СЂС‚С‹(РґР»СЏ "РР")
 	void AIThrowUP(PlayerHand &Table);
 };
 
