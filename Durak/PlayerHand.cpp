@@ -5,8 +5,8 @@
 #include <string>
 
 vector<Card>  &PlayerHand::getHand()	{ return Hand; }
-//Проверка
-//Âçÿòèå êàðòû èç êîëîäû(number äëÿ âîçìîæíîãî áóäóùåãî (ïîäêèäíîãî äóðàêà)
+
+//Взятие карты из колоды(number для возможного будущего (подкидного дурака)
 void PlayerHand::TakingCard(std::vector<Card> &deck, int number)
 {
 	auto iter = deck.begin();
@@ -16,7 +16,7 @@ void PlayerHand::TakingCard(std::vector<Card> &deck, int number)
 	deck.erase(iter);
 }
 
-//Õîä êàðòîé
+//Ход картой
 void PlayerHand::TurningCard(PlayerHand &OtherHand, int number)
 {
 	auto iter = Hand.begin();
@@ -24,7 +24,7 @@ void PlayerHand::TurningCard(PlayerHand &OtherHand, int number)
 	OtherHand.Hand.emplace_back(*iter);
 	Hand.erase(iter);
 }
-//Ïîêàçàòü âñþ ðóêó êàðò
+//Показать всю руку карт
 void PlayerHand::ShowHand()
 {
 	int count = 1;
@@ -35,12 +35,9 @@ void PlayerHand::ShowHand()
 	}
 }
 
-//Ïðîâåðêà íà âîçìîæíîñòü îòáèòèÿ êàðòû (table - êàðòà íà ñòîëå, card - êàðòà, êîòîðóþ ïðîâåðÿåì)		!!!!!!ÏÎ×ÈÍÈÒÜ ÀÍÀËÈÇ Ñ ÊÎÇÛÐÍÛÌÈ ÊÀÐÒÀÌÈ
+//Проверка на возможность отбития карты (table - карта на столе, card - карта, которую проверяем)	
 bool PlayerHand::Analysis(PlayerHand table, Card card) //íàäî áûëî ïåðåäàâàòü â ïàðàìåòð ñðàçó êàðòó
-{	//Åñëè ìàñòü âûáðàííîé êàðòû ñîâïàäàåò ñ ìàñòüþ êàðòû íà ñòîëå è å¸ íîìèíàë áîëüøå èëè âûáðàííàÿ êàðòà êîçûðü
-	//if (table.Hand.at(number).getSuit() == Card::CardSuiting::Trumps && card.getSuit() == Card::CardSuiting::Trumps)
-	//	return true;
-	//else
+{	//Если масть выбранной карты совпадает с мастью карты на столе и её номинал больше или выбранная карта козырь
 	if(table.Hand.front().getSuit() != Card::CardSuiting::Trumps)
 	{
 		if ((card.getSuit() == table.getHand().front().getSuit() && card.getDenom() > table.getHand().front().getDenom())
@@ -54,15 +51,15 @@ bool PlayerHand::Analysis(PlayerHand table, Card card) //íàäî áûëî ïå�
 	}
 	return false;
 }
-//Îòáèòèå êàðòû
-void PlayerHand::KickCard(int number, PlayerHand &table)		//number - íîìåð êàðòû èç ðóêè, table - îòêóäà îòáèòü(ñî ñòîëà ïî óìîë÷àíèþ)
+//Отбитие карты
+void PlayerHand::KickCard(int number, PlayerHand &table)
 {
 	auto iter = this->Hand.begin();
 	iter += number;
 	Hand.erase(iter);
 	table.getHand().erase(table.getHand().begin());
 }
-//ôóíêöèÿ ïîäêèäûâàíèÿ ó èãðîêà
+//функция подкидывания у игрока
 void PlayerHand::PlayerThrowUP(PlayerHand &Table)
 {	
 	string answer;
@@ -71,23 +68,23 @@ void PlayerHand::PlayerThrowUP(PlayerHand &Table)
 	{
 		if (elem.getDenom() == Table.getHand().front().getDenom())
 		{
-				cout << "Âû ìîæåòå ïîäêèíóòü êàðòó ñîïåðíèêó." << endl;
+				cout << "Вы можете подкинуть карту сопернику." << endl;
 				elem.CardImage(i + 1);
-				cout << "Ââåäèòå YES èëè NO." << endl;
+				cout << "Введите YES или NO." << endl;
 				getline(cin, answer);
 				if (answer == "YES")
 				{
 					this->TurningCard(Table, i);
-					cout << "Âû ïîäêèíóëè êàðòó ñîïåðíèêó." << endl;
+					cout << "Вы подкинули карту сопернику." << endl;
 				}
 				else if (answer == "NO")
-					cout << "Âû îñòàâëÿåòå êàðòó â ðóêå." << endl;
+					cout << "Вы оставляете карту в руке." << endl;
 				break;
 		}
 		i++;
 	}
 }
-//Ôóíêöèÿ äëÿ ïîäêèäûâàíèÿ ó ÀÈ
+//Функция для подкидывания у АИ
 void PlayerHand::AIThrowUP(PlayerHand &Table)
 {
 	int i = 0;
@@ -95,7 +92,7 @@ void PlayerHand::AIThrowUP(PlayerHand &Table)
 	{
 		if (elem.getDenom() == Table.getHand().front().getDenom() && elem.getSuit() != Card::CardSuiting::Trumps)
 		{
-			cout << "Êîìïüþòåð ïîäêèäûâàåò âàì êàðòó." << endl;
+			cout << "Компьютер подкидывает вам карту." << endl;
 			elem.CardImage(i + 1);
 			this->TurningCard(Table, i);
 			break;
