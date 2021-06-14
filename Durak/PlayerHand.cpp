@@ -5,8 +5,8 @@
 #include <string>
 
 vector<Card>  &PlayerHand::getHand()	{ return Hand; }
-
-//Взятие карты из колоды(number для возможного будущего (подкидного дурака)
+//РџСЂРѕРІРµСЂРєР°
+//Г‚Г§ГїГІГЁГҐ ГЄГ Г°ГІГ» ГЁГ§ ГЄГ®Г«Г®Г¤Г»(number Г¤Г«Гї ГўГ®Г§Г¬Г®Г¦Г­Г®ГЈГ® ГЎГіГ¤ГіГ№ГҐГЈГ® (ГЇГ®Г¤ГЄГЁГ¤Г­Г®ГЈГ® Г¤ГіГ°Г ГЄГ )
 void PlayerHand::TakingCard(std::vector<Card> &deck, int number)
 {
 	auto iter = deck.begin();
@@ -16,7 +16,7 @@ void PlayerHand::TakingCard(std::vector<Card> &deck, int number)
 	deck.erase(iter);
 }
 
-//Ход картой
+//Г•Г®Г¤ ГЄГ Г°ГІГ®Г©
 void PlayerHand::TurningCard(PlayerHand &OtherHand, int number)
 {
 	auto iter = Hand.begin();
@@ -24,7 +24,7 @@ void PlayerHand::TurningCard(PlayerHand &OtherHand, int number)
 	OtherHand.Hand.emplace_back(*iter);
 	Hand.erase(iter);
 }
-//Показать всю руку карт
+//ГЏГ®ГЄГ Г§Г ГІГј ГўГ±Гѕ Г°ГіГЄГі ГЄГ Г°ГІ
 void PlayerHand::ShowHand()
 {
 	int count = 1;
@@ -35,9 +35,9 @@ void PlayerHand::ShowHand()
 	}
 }
 
-//Проверка на возможность отбития карты (table - карта на столе, card - карта, которую проверяем)		!!!!!!ПОЧИНИТЬ АНАЛИЗ С КОЗЫРНЫМИ КАРТАМИ
-bool PlayerHand::Analysis(PlayerHand table, Card card) //надо было передавать в параметр сразу карту
-{	//Если масть выбранной карты совпадает с мастью карты на столе и её номинал больше или выбранная карта козырь
+//ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г  ГўГ®Г§Г¬Г®Г¦Г­Г®Г±ГІГј Г®ГІГЎГЁГІГЁГї ГЄГ Г°ГІГ» (table - ГЄГ Г°ГІГ  Г­Г  Г±ГІГ®Г«ГҐ, card - ГЄГ Г°ГІГ , ГЄГ®ГІГ®Г°ГіГѕ ГЇГ°Г®ГўГҐГ°ГїГҐГ¬)		!!!!!!ГЏГЋГ—Г€ГЌГ€Г’Гњ ГЂГЌГЂГ‹Г€Г‡ Г‘ ГЉГЋГ‡Г›ГђГЌГ›ГЊГ€ ГЉГЂГђГ’ГЂГЊГ€
+bool PlayerHand::Analysis(PlayerHand table, Card card) //Г­Г Г¤Г® ГЎГ»Г«Г® ГЇГҐГ°ГҐГ¤Г ГўГ ГІГј Гў ГЇГ Г°Г Г¬ГҐГІГ° Г±Г°Г Г§Гі ГЄГ Г°ГІГі
+{	//Г…Г±Г«ГЁ Г¬Г Г±ГІГј ГўГ»ГЎГ°Г Г­Г­Г®Г© ГЄГ Г°ГІГ» Г±Г®ГўГЇГ Г¤Г ГҐГІ Г± Г¬Г Г±ГІГјГѕ ГЄГ Г°ГІГ» Г­Г  Г±ГІГ®Г«ГҐ ГЁ ГҐВё Г­Г®Г¬ГЁГ­Г Г« ГЎГ®Г«ГјГёГҐ ГЁГ«ГЁ ГўГ»ГЎГ°Г Г­Г­Г Гї ГЄГ Г°ГІГ  ГЄГ®Г§Г»Г°Гј
 	//if (table.Hand.at(number).getSuit() == Card::CardSuiting::Trumps && card.getSuit() == Card::CardSuiting::Trumps)
 	//	return true;
 	//else
@@ -54,15 +54,15 @@ bool PlayerHand::Analysis(PlayerHand table, Card card) //надо было передавать в 
 	}
 	return false;
 }
-//Отбитие карты
-void PlayerHand::KickCard(int number, PlayerHand &table)		//number - номер карты из руки, table - откуда отбить(со стола по умолчанию)
+//ГЋГІГЎГЁГІГЁГҐ ГЄГ Г°ГІГ»
+void PlayerHand::KickCard(int number, PlayerHand &table)		//number - Г­Г®Г¬ГҐГ° ГЄГ Г°ГІГ» ГЁГ§ Г°ГіГЄГЁ, table - Г®ГІГЄГіГ¤Г  Г®ГІГЎГЁГІГј(Г±Г® Г±ГІГ®Г«Г  ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ)
 {
 	auto iter = this->Hand.begin();
 	iter += number;
 	Hand.erase(iter);
 	table.getHand().erase(table.getHand().begin());
 }
-//функция подкидывания у игрока
+//ГґГіГ­ГЄГ¶ГЁГї ГЇГ®Г¤ГЄГЁГ¤Г»ГўГ Г­ГЁГї Гі ГЁГЈГ°Г®ГЄГ 
 void PlayerHand::PlayerThrowUP(PlayerHand &Table)
 {	
 	string answer;
@@ -71,23 +71,23 @@ void PlayerHand::PlayerThrowUP(PlayerHand &Table)
 	{
 		if (elem.getDenom() == Table.getHand().front().getDenom())
 		{
-				cout << "Вы можете подкинуть карту сопернику." << endl;
+				cout << "Г‚Г» Г¬Г®Г¦ГҐГІГҐ ГЇГ®Г¤ГЄГЁГ­ГіГІГј ГЄГ Г°ГІГі Г±Г®ГЇГҐГ°Г­ГЁГЄГі." << endl;
 				elem.CardImage(i + 1);
-				cout << "Введите YES или NO." << endl;
+				cout << "Г‚ГўГҐГ¤ГЁГІГҐ YES ГЁГ«ГЁ NO." << endl;
 				getline(cin, answer);
 				if (answer == "YES")
 				{
 					this->TurningCard(Table, i);
-					cout << "Вы подкинули карту сопернику." << endl;
+					cout << "Г‚Г» ГЇГ®Г¤ГЄГЁГ­ГіГ«ГЁ ГЄГ Г°ГІГі Г±Г®ГЇГҐГ°Г­ГЁГЄГі." << endl;
 				}
 				else if (answer == "NO")
-					cout << "Вы оставляете карту в руке." << endl;
+					cout << "Г‚Г» Г®Г±ГІГ ГўГ«ГїГҐГІГҐ ГЄГ Г°ГІГі Гў Г°ГіГЄГҐ." << endl;
 				break;
 		}
 		i++;
 	}
 }
-//Функция для подкидывания у АИ
+//Г”ГіГ­ГЄГ¶ГЁГї Г¤Г«Гї ГЇГ®Г¤ГЄГЁГ¤Г»ГўГ Г­ГЁГї Гі ГЂГ€
 void PlayerHand::AIThrowUP(PlayerHand &Table)
 {
 	int i = 0;
@@ -95,7 +95,7 @@ void PlayerHand::AIThrowUP(PlayerHand &Table)
 	{
 		if (elem.getDenom() == Table.getHand().front().getDenom() && elem.getSuit() != Card::CardSuiting::Trumps)
 		{
-			cout << "Компьютер подкидывает вам карту." << endl;
+			cout << "ГЉГ®Г¬ГЇГјГѕГІГҐГ° ГЇГ®Г¤ГЄГЁГ¤Г»ГўГ ГҐГІ ГўГ Г¬ ГЄГ Г°ГІГі." << endl;
 			elem.CardImage(i + 1);
 			this->TurningCard(Table, i);
 			break;
