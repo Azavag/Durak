@@ -6,7 +6,6 @@
 
 vector<Card>  &PlayerHand::getHand()	{ return Hand; }
 
-//ПРОВЕРКИ КОДИРОВКИ
 //Взятие карты из колоды(number для возможного будущего (подкидного дурака)
 void PlayerHand::TakingCard(std::vector<Card> &deck, int number)
 {
@@ -72,7 +71,7 @@ void PlayerHand::PlayerThrowUP(PlayerHand &Table)
 	{
 		if (elem.getDenom() == Table.getHand().front().getDenom())
 		{
-				cout << "Вы можете подкинуть карту сопернику."<<endl;
+				cout << "Вы можете подкинуть карту сопернику." << endl;
 				elem.CardImage(i + 1);
 				cout << "Введите YES или NO." << endl;
 				getline(cin, answer);

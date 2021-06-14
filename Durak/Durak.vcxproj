@@ -91,7 +91,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,9 +154,7 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="DeckInitialization.cpp" />
     <ClCompile Include="Durak.cpp" />
-    <ClCompile Include="PlayerHand.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
+    <ClCompile Include="PlayerHand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
