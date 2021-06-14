@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-//Установка масти карты
+//РЈСЃС‚Р°РЅРѕРІРєР° РјР°СЃС‚Рё РєР°СЂС‚С‹
 void Card::setSuit(CardSuiting Suit)
 {
 	CardSuit = Suit;
@@ -16,7 +16,7 @@ void Card::setSuit(CardSuiting Suit)
 		SuitImage = 6;
 }
 
-//Установка номинала карты
+//РЈСЃС‚Р°РЅРѕРІРєР° РЅРѕРјРёРЅР°Р»Р° РєР°СЂС‚С‹
 void Card::setDenom(CardDenominal Denom) 
 {
 		CardDenom = Denom;
@@ -39,7 +39,7 @@ void Card::setDenom(CardDenominal Denom)
 		if (CardDenom == Ace)
 			DenomImage = 'A';
 }
-//Вывод рисунка карты
+//Р’С‹РІРѕРґ СЂРёСЃСѓРЅРєР° РєР°СЂС‚С‹
 void Card::CardImage(int numb)
 {
 	if (CardDenom == Ten)
