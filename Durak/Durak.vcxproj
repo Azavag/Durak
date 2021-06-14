@@ -154,7 +154,9 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="DeckInitialization.cpp" />
     <ClCompile Include="Durak.cpp" />
-    <ClCompile Include="PlayerHand.cpp" />
+    <ClCompile Include="PlayerHand.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />

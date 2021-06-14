@@ -6,7 +6,7 @@
 
 vector<Card>  &PlayerHand::getHand()	{ return Hand; }
 
-//Взятие карты из колоды(number для возможного будущего (подкидного дурака))	number делать +1
+//Взятие карты из колоды(number для возможного будущего (подкидного дурака)
 void PlayerHand::TakingCard(std::vector<Card> &deck, int number)
 {
 	auto iter = deck.begin();
