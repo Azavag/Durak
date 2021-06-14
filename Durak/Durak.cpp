@@ -12,7 +12,6 @@
 #include "DeckInitialization.h"
 #include "PlayerHand.h"
 
-//ПРОВЕРКИ КОДИРОВКИ
 using namespace std;
 
 void RoundMessage(Card card);

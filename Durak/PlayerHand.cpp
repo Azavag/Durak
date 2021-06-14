@@ -6,6 +6,7 @@
 
 vector<Card>  &PlayerHand::getHand()	{ return Hand; }
 
+//ПРОВЕРКИ КОДИРОВКИ
 //Взятие карты из колоды(number для возможного будущего (подкидного дурака)
 void PlayerHand::TakingCard(std::vector<Card> &deck, int number)
 {
